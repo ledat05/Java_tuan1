@@ -12,66 +12,52 @@ public class baitap17 {
         double[] a;
         int n;
         Scanner sc = new Scanner(System.in);
-        n = docsophantu(sc);
+        do {
+            System.out.print("Nhap so phan tu (1 <= n >= 20): ");
+            n = sc.nextInt();
+        } while (n <= 0 || n > 20);
         a = new double[n];
         nhapMang(a, sc);
         //xautmang
         xuatMang(a);
-        //Tinhtong
-        int Tong = tinhTong(a);
-        System.out.println("tong gia gia tri cua mang:" + Tong);
-        //dem so le
-        int duong_le = demDuongLe(a);
-        System.out.println("\n so duong le:" + duong_le);
-        // tim max
-        int timmax = max(a);
-        System.out.println("phan tu lon nhat trong mang:" + timmax);
+        //TinhTrunginh
+        double TB=TinhTrungBinh(a);
+        System.out.println("\nDiem trung binh cua mang:"+TB);
+        //TimMin
+        double min=TimMin(a);
+        System.out.println("Min cua mang:"+min);
     }
 
-    public static void timMin(double[] a, Scanner sc) {
-        double min=a[0];
+   public static double TimMin(double[] a) {
+        double min = a[0];
         for (int i = 1; i < a.length; i++) {
-            if(a[i]<min){
-                min=a[i];
+            if (a[i] < min) {
+                min = a[i];
             }
         }
+        return min;
+    }
+    public static double TinhTrungBinh(double[] a) {
+        double sum = 0;
+        for (double x : a) {
+            sum += x;
+        }
+        return sum / a.length;
     }
 //dinh nghia phuong thuc xuat mang
 
-    public static void xuatMang(int[] a) {
-        for (int x : a) {
+    public static void nhapMang(double[] a, Scanner sc) {
+        for (int i = 0; i < a.length; i++) {
+            System.out.print("Cho biet gia tri a[" + i + "]: ");
+            a[i] = sc.nextDouble();
+        }
+    }
+
+    public static void xuatMang(double[] a) {
+        for (double x : a) {
             System.out.print(x + " ");
         }
     }
     //Tinh tong
 
-    public static int tinhTong(int[] a) {
-        int sum = 0;
-        for (int x : a) {
-            sum = sum + x;
-        }
-        return sum;
-    }
-
-    public static int demDuongLe(int[] a) {
-        int dem_duong_le = 0;
-        for (int x : a) {
-            if (x > 0 && x % 2 != 0) {
-                dem_duong_le++;
-            }
-        }
-        return dem_duong_le;
-    }
-
-    public static int max(int[] a) {
-        int max = a[0];
-
-        for (int i = 1; i < a.length; i++) {
-            if (a[i] > max) {
-                max = a[i];
-            }
-
-        }
-        return max;
-    }
 }
